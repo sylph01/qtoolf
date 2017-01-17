@@ -1,0 +1,59 @@
+<h2 class="m-t-2">
+  <%= @round.name %>
+</h2>
+
+<hr class="m-y-2" />
+
+<div class="container-fluid">
+  <div class="row">
+    <h3 class="m-t-1">試合一覧</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>試合名</th>
+          <th>プレイヤー1</th>
+          <th>プレイヤー2</th>
+          <th>プレイヤー3</th>
+          <th>プレイヤー4</th>
+          <th></th>
+        </tr>
+      </thead>
+    <% @round.matches.each do |match| %>
+      <tbody>
+        <tr>
+          <td><%= link_to match.name, admin_match_path(match) %></td>
+          <td><%= match.score1.name %></td>
+          <td><%= match.score2.name %></td>
+          <td><%= match.score3.name %></td>
+          <td><%= match.score4.name %></td>
+          <td>
+            <%= link_to "編集", edit_admin_match_path(match), class: "btn btn-secondary", role: "button" %>
+            <%= link_to "削除", admin_match_path(match), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-danger", role: "button" %>
+          </td>
+        </tr>
+      </tbody>
+    <% end %>
+    </table>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <h3 class="m-t-1">メモ</h3>
+      <p>
+        <%= @round.description %>
+      </p>
+    </div>
+    <div class="col-md-6">
+      <h3 class="m-t-1">大会名</h3>
+      <p>
+        <%= @round.event.name %>
+      </p>
+    </div>
+  </div>
+</div>
+
+<hr class="m-y-2" />
+
+<%= link_to '結果', result_admin_round_path(@round), class: "btn btn-success", role: 'button', "data-turbolinks" => false %>
+<%= link_to '試合の追加', new_admin_match_path(round_id: @round.id), class: "btn btn-secondary", role: 'button' %>
+<%= link_to '編集', edit_admin_round_path(@round), class: "btn btn-secondary", role: 'button' %>
+<%= link_to '戻る', admin_event_path(@round.event), class: "btn btn-secondary", role: 'button' %>

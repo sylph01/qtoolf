@@ -1,0 +1,76 @@
+<h2 class="m-t-2">
+  <%= @event.name %>
+</h2>
+
+<h3 class="m-t-1">ラウンド一覧</h3>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>ラウンド名</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @event.rounds.each do |round| %>
+      <tr>
+        <td><%= link_to round.name, admin_round_path(round) %></td>
+        <td>
+          <%= link_to "編集", edit_admin_round_path(round), class: "btn btn-secondary", role: "button" %>
+          <%= link_to '削除', admin_round_path(round), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-danger", role: 'button' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'ラウンド作成', new_admin_round_path(event_id: @event.id), class: "btn btn-success", role: 'button' %>
+
+<hr class="m-y-2" />
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-6">
+      <h3 class="m-t-1">メモ</h4>
+      <p>
+        <%= @event.description %>
+      </p>
+    </div>
+    <div class="col-md-6">
+      <h3 class="m-t-1">管理者</h3>
+
+      <dl>
+        <dt>Twitter ID</dt>
+        <dd><%= @event.owner ? "@" + @event.owner.screen_name : "N/A" %></dd>
+        <dt>名前</dt>
+        <dd><%= @event.owner ? @event.owner.name : "N/A" %></dd>
+      </dl>
+
+      <h3 class="m-t-1">コントリビューター</h3>
+
+      <ul>
+        <% @event.contributors.each do |cont| %>
+          <li>
+            @<%= cont.screen_name %>
+            &nbsp;
+            <% if @is_owner %>
+              <%= link_to '削除', admin_contributor_path(cont), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-danger", role: 'button' %>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+
+      <% if @is_owner %>
+        <%= form_for [:admin, @contributor] do |f| %>
+          @<%= f.text_field :screen_name %>
+          <%= f.hidden_field :event_id %>
+          <%= f.submit "追加", class: "btn btn-primary" %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<hr class="m-y-2" />
+
+<%= link_to '編集', edit_admin_event_path(@event), class: "btn btn-secondary", role: 'button' %>
+<%= link_to '戻る', admin_events_path, class: "btn btn-secondary", role: 'button' %>

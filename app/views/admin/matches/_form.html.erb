@@ -1,0 +1,58 @@
+<%= form_for([:admin, @match]) do |f| %>
+  <% if @match.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@match.errors.count, "error") %> prohibited this round from being saved:</h2>
+
+      <ul>
+      <% @match.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <% if @match.new_record? %>
+  <div class="row">
+    <div class="col-xs-4">コート</div>
+    <div class="col-xs-8"><%= f.select :court, options_for_select(['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']), {}, class: "form-control" %></div>
+  </div>
+  <div class="row">
+    <div class="col-xs-4">試合番号</div>
+    <div class="col-xs-8"><%= f.text_field :number, class: "form-control" %></div>
+  </div>
+  <%= f.hidden_field :round_id %>
+  <hr class="m-y-2">
+  <% end %>
+
+  <%= f.fields_for :scores do |scores_form| %>
+  <div class="row">
+    <div class="col-xs-4">プレイヤー名</div>
+    <div class="col-xs-8"><%= scores_form.text_field :name, class: "form-control" %></div>
+  </div>
+  <div class="row">
+    <div class="col-xs-4">ジャンル</div>
+    <div class="col-xs-8"><%= scores_form.select :genre, all_genres, {include_blank: true}, class: "form-control" %></div>
+  </div>
+  <div class="row">
+    <div class="col-xs-4">形式</div>
+    <div class="col-xs-8"><%= scores_form.select :kind, all_kinds, {include_blank: true}, class: "form-control" %></div>
+  </div>
+  <div class="row">
+    <div class="col-xs-4">得点</div>
+    <div class="col-xs-8"><%= scores_form.text_field :score, class: "form-control" %></div>
+  </div>
+  <%= scores_form.hidden_field :id %>
+  <hr class="m-y-2">
+  <% end %>
+
+  <div class="row">
+    <div class="col-xs-4">画像</div>
+    <div class="col-xs-8"><%= f.file_field :image %></div>
+  </div>
+
+  <hr class="m-y-2">
+
+  <div class="actions">
+    <%= f.submit "送信", class: "btn btn-primary" %>
+  </div>
+<% end %>

@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  provider: MyString
+  uid: MyString
+  screen_name: MyString
+  name: MyString
+  admin: false
+
+two:
+  provider: MyString
+  uid: MyString
+  screen_name: MyString
+  name: MyString
+  admin: false

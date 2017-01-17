@@ -1,0 +1,50 @@
+<h2 class="m-t-2">
+  <%= @match.name %>
+</h2>
+
+<hr class="m-y-2" />
+
+<div class="container-fluid">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>プレイヤー名</th>
+        <th>ジャンル</th>
+        <th>形式</th>
+        <th>得点</th>
+        <th>順位</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @match.scores.sort_by(&:order).each do |score| %>
+      <tr>
+        <td><%= score.name %></td>
+        <td><%= score.genre %></td>
+        <td><%= score.kind %></td>
+        <td><%= score.score && ("%3.2f" % score.score) %></td>
+        <td><%= rank(@match, score) %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+
+<hr class="m-y-2" />
+
+<h3>画像</h3>
+
+<% if @match.image.file %>
+<%= image_tag @match.image_url, width: 480, height: 360, id: "match_image" if @match.image.file %>
+<% else %>
+（画像なし）
+<% end %>
+
+<hr class="m-y-2" />
+
+<%= link_to '編集', edit_admin_match_path(@match), class: "btn btn-success", role: 'button' %>
+<script type="text/javascript" async src="https://platform.twitter.com/widgets.js"></script>
+<a href="https://twitter.com/intent/tweet?text=<%= @twitter_content %>" class="btn btn-primary">結果をツイートする</a>
+
+<hr class="m-y-2" />
+
+<%= link_to '戻る', admin_round_path(@match.round), class: "btn btn-secondary", role: 'button' %>

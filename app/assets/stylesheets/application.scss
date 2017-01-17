@@ -1,0 +1,44 @@
+@import "bootstrap";
+
+.qtf-blue-bg {
+  background-color: #cce5ff;
+}
+
+.qtf-green-bg {
+  background-color: #ccffdd;
+}
+
+.qtf-orange-bg {
+  background-color: #ffbf80;
+}
+
+.qtf-light-orange-bg {
+  background-color: #fff3e6;
+}
+
+.qtf-red-bg {
+  background-color: #ffb3b3;
+}
+
+.qtf-gray-bg {
+  background-color: #e6e6e6;
+}
+
+.qtf-page-header {
+  padding: 2rem 15px;
+}
+
+p.text {
+  padding: 10px 5px;
+}
+
+@media (min-width: 544px) {
+  .qtf-pageheader {
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+  }
+}
+
+.qtf-page-body{
+  padding: 1rem 24px;
+}

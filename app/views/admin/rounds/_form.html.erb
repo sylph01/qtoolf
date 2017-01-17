@@ -1,0 +1,41 @@
+<%= form_for([:admin, @round]) do |f| %>
+  <% if @round.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@round.errors.count, "error") %> prohibited this round from being saved:</h2>
+
+      <ul>
+      <% @round.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <label for="round_name">ラウンド名</label>
+    <%= f.text_field :name, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <label for="round_description">メモ</label>
+    <%= f.text_area :description, class: "form-control", rows: 5 %>
+  </div>
+  <%= f.hidden_field :event_id %>
+  <% if @round.new_record? %>
+    <div class="form-group">
+      <label for="names">プレイヤー名</label>
+      <%= text_area_tag "names", "", rows: 16, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <label for="courts">コート数</label>
+      <%= select_tag "courts", options_for_select([1,2,3,4,5,6,7,8]), class: "form-control" %>
+    </div>
+    <div class="form-check">
+      <label for="shuffle" class="form-check-inline">
+      <%= check_box_tag "shuffle", true, false, class: "form-check-input" %> 自動抽選を行う
+      </label>
+    </div>
+  <% end %>
+  <div class="actions">
+    <%= f.submit "送信", class: "btn btn-primary" %>
+  </div>
+<% end %>
