@@ -20,6 +20,9 @@
             Qtoolf
             <% if @current_user %>
               (as @<%= @current_user.screen_name %>)
+              <% if @current_user.admin %>
+                ⭐
+              <% end %>
             <% end %>
           </a>
           <div id="navbarNavDropdown" class="navbar-collapse collapse">
