@@ -22,10 +22,10 @@
       <tbody>
         <tr>
           <td><%= link_to match.name, admin_match_path(match) %></td>
-          <td><%= match.score1.name %></td>
-          <td><%= match.score2.name %></td>
-          <td><%= match.score3.name %></td>
-          <td><%= match.score4.name %></td>
+          <td><%= link_to match.score1.name, history_admin_event_path(@round.event, :player_name => match.score1.name) %></td>
+          <td><%= link_to match.score2.name, history_admin_event_path(@round.event, :player_name => match.score2.name) %></td>
+          <td><%= link_to match.score3.name, history_admin_event_path(@round.event, :player_name => match.score3.name) %></td>
+          <td><%= link_to match.score4.name, history_admin_event_path(@round.event, :player_name => match.score4.name) %></td>
           <td>
             <%= link_to "編集", edit_admin_match_path(match), class: "btn btn-secondary", role: "button" %>
             <%= link_to "削除", admin_match_path(match), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-danger", role: "button" %>
