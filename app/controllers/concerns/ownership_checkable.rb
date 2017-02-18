@@ -6,11 +6,11 @@ module OwnershipCheckable
   end
 
   def is_owner?(entity, user)
-    user.id == entity.owner_id
+    user.admin || user.id == entity.owner_id
   end
 
   def is_contributor?(entity, user)
-    is_owner?(entity, user) || entity.contributors.map{ |c| c.screen_name.downcase }.include?(user.screen_name.downcase)
+    user.admin || is_owner?(entity, user) || entity.contributors.map{ |c| c.screen_name.downcase }.include?(user.screen_name.downcase)
   end
 
   def check_ownership_of(entity, user)
