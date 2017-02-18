@@ -11,6 +11,12 @@ class Admin::EventsController < Admin::BaseController
     @is_owner = is_owner?(@event, @current_user)
   end
 
+  def history
+    @event = Event.find(params[:id])
+    @player_name = params[:player_name]
+    @scores = @event.scores_of_player(@player_name)
+  end
+
   def new
     @event = Event.new
   end

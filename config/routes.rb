@@ -18,7 +18,11 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root 'pages#index', as: 'root'
-    resources :events
+    resources :events do
+      member do
+        get 'history/:player_name', to: 'events#history', as: :history
+      end
+    end
     resources :contributors
     resources :rounds do
       member do
