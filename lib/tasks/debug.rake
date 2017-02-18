@@ -7,6 +7,7 @@ namespace :debug do
       u.uid         = '0'
       u.screen_name = 'FakeAdmin'
       u.name        = 'Fake Admin'
+      u.admin       = true
       if u.save
         puts "Fake user created!"
       else
