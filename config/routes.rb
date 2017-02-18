@@ -4,7 +4,11 @@ Rails.application.routes.draw do
 
   get '/about' => 'home#about'
 
-  resources :events
+  resources :events do
+    member do
+      get 'history/:player_name', to: 'events#history', as: :history
+    end
+  end
   resources :rounds do
     member do
       get :result, as: :result
