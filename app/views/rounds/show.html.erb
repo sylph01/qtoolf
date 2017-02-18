@@ -21,10 +21,10 @@
       <tbody>
         <tr>
           <td><%= link_to match.name, match_path(match) %></td>
-          <td><%= match.score1.name %></td>
-          <td><%= match.score2.name %></td>
-          <td><%= match.score3.name %></td>
-          <td><%= match.score4.name %></td>
+          <td><%= link_to match.score1.name, history_event_path(@round.event, :player_name => match.score1.name) %></td>
+          <td><%= link_to match.score2.name, history_event_path(@round.event, :player_name => match.score2.name) %></td>
+          <td><%= link_to match.score3.name, history_event_path(@round.event, :player_name => match.score3.name) %></td>
+          <td><%= link_to match.score4.name, history_event_path(@round.event, :player_name => match.score4.name) %></td>
         </tr>
       </tbody>
     <% end %>

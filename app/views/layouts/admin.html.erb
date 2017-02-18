@@ -12,25 +12,33 @@
   <body class="<%= controller_name %> <%= action_name %>">
     <div class="container-fluid">
       <div class="header clearfix">
-        <nav class="navbar navbar-light bg-faded">
+        <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+          <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
           <a class="navbar-brand" href="/">
             Qtoolf
             <% if @current_user %>
               (as @<%= @current_user.screen_name %>)
             <% end %>
           </a>
-          <ul class="nav navbar-nav pull-xs-right">
-            <li class="nav-item">
-              <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-            <% if @current_user %>
-              <a class="nav-link" href="/logout">Logout</a>
-            <% else %>
-              <a class="nav-link" href="/auth/twitter">Login with Twitter</a>
-            <% end %>
-            </li>
-          </ul>
+          <div id="navbarNavDropdown" class="navbar-collapse collapse">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/events">Events</a>
+              </li>
+              <li class="nav-item">
+                <% if @current_user %>
+                  <a class="nav-link" href="/logout">Logout</a>
+                <% else %>
+                  <a class="nav-link" href="/auth/twitter">Login with Twitter</a>
+                <% end %>
+              </li>
+            </ul>
+          </div>
         </nav>
       </div>
 
@@ -42,7 +50,7 @@
 
       <!-- alerts -->
       <% if flash[:notice] %>
-      <div class="alert alert-info alert-dismissible fade in" role="alert">
+      <div class="alert alert-info alert-dismissible" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -50,7 +58,7 @@
       </div>
       <% end %>
       <% if flash[:alert] %>
-      <div class="alert alert-danger alert-dismissible fade in" role="alert">
+      <div class="alert alert-danger alert-dismissible" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>

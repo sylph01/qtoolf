@@ -1,0 +1,20 @@
+<h2 class="m-t-2">
+  <%= @event.name %> / <%= @player_name %> の出題
+</h2>
+
+<table class="table">
+  <tr>
+    <th>ラウンド</th>
+    <th>形式</th>
+  </tr>
+<% @scores.each do |score| %>
+  <tr>
+    <td><%= score.match.round.name %></td>
+    <td><%= score.kind %></td>
+  </tr>
+<% end %>
+</table>
+
+<hr class="m-y-2" />
+
+<%= link_to '戻る', :back, class: "btn btn-secondary", role: 'button' %>
