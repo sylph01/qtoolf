@@ -5,11 +5,13 @@
 <table class="table">
   <tr>
     <th>ラウンド</th>
+    <th>ジャンル</th>
     <th>形式</th>
   </tr>
 <% @scores.each do |score| %>
   <tr>
     <td><%= score.match.round.name %></td>
+    <td><%= score.genre %></td>
     <td><%= score.kind %></td>
   </tr>
 <% end %>
