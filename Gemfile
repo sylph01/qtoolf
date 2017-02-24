@@ -76,3 +76,5 @@ gem 'gon'
 gem 'carrierwave', '>= 1.0.0.beta', '< 2.0'
 
 gem 'unicorn'
+
+gem 'activerecord-session_store'
