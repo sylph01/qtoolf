@@ -26,7 +26,7 @@ class Admin::MatchesController < Admin::BaseController
   def show
     @match = Match.includes(:scores).find(params[:id])
 
-    content = "#{@match.round.name} / #{@match.name}\n"
+    content = "#{@match.round.event.name} / #{@match.round.name} / #{@match.name}\n"
     @match.scores.each do |score|
       rank = @match.scores.to_a.count { |sx| sx.score.to_f > score.score.to_f } + 1
       content += "#{score.name}:#{score.genre}/#{score.kind}-#{score.score}(#{rank})\n"
