@@ -6,4 +6,8 @@ class Event < ApplicationRecord
   def scores_of_player(player_name)
     scores = Score.joins(match: {round: :event}).where('events.id' => self.id).where('name' => player_name)
   end
+
+  def qacers_export
+    self.rounds.map(&:qacers_scores).map { |rs| rs.map { |ms| ms.map { |ss| ss.join(",") }.join("\n") }.join("\n") }.join("\n")
+  end
 end

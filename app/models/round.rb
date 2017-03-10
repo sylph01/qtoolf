@@ -6,11 +6,11 @@ class Round < ApplicationRecord
   has_many :matches, dependent: :destroy
 
   def qacers_export
-    self.matches.map do |match|
-      match.scores.map do |score|
-        [score.name.to_s, score.genre.to_s, score.qacers_kind.to_s, score.numeric_score].join(",")
-      end.join("\n")
-    end.join("\n")
+    self.matches.map{ |match| match.qacers_scores.map { |x| x.join(",") }.join("\n") }.join("\n")
+  end
+
+  def qacers_scores
+    self.matches.map { |match| match.qacers_scores.map { |x| [self.name] + x }}
   end
 
   def owner

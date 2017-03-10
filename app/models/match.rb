@@ -11,6 +11,10 @@ class Match < ApplicationRecord
     end
   end
 
+  def qacers_scores
+    self.scores.map { |score| [score.name.to_s, score.genre.to_s, score.qacers_kind.to_s, score.numeric_score] }
+  end
+
   def name
     "#{self.court}コート/#{self.number}試合"
   end
