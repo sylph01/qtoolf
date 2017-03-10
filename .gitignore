@@ -27,3 +27,5 @@
 /public/uploads/*
 
 /config/database.yml
+
+/_site/
